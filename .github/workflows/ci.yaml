@@ -11,6 +11,10 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v2
 
+      - name: Login in to Docker Hub
+        run: |
+          echo ${{secrets.DOCKERHUB_PASSWORD}} | docker login --username ${{secrets.DOCKERHUB_USERNAME}} --password-stdin
+
       - name: Set Up Docker Environment      
         uses: docker://20.10.21
 
@@ -20,6 +24,5 @@ jobs:
 
       - name: Push Image to Docker Repo
         run: |
-          echo ${{secrets.DOCKERHUB_PASSWORD}} | docker login --username ${{secrets.DOCKERHUB_USERNAME}} --password-stdin
           docker tag openai-demo:latest ${{secrets.DOCKERHUB_USERNAME}}/openai-demo:latest
           docker push ${{secrets.DOCKERHUB_USERNAME}}/openai-demo:latest
