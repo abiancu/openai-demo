@@ -12,14 +12,14 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Set Up Docker Environment      
-        uses: docker://19.03.14
+        uses: docker://20.10.21
 
       - name: Build Docker Image
         run: |
-          docker build -t openai:latest -f Dockerfile .
+          docker build -t openai-demo:latest -f Dockerfile .
 
       - name: Push Image to Docker Repo
         run: |
           echo ${{secrets.DOCKERHUB_PASSWORD}} | docker login --username ${{secrets.DOCKERHUB_USERNAME}} --password stdin
-          docker tag openai:latest ${{secrets.DOCKERHUB_USERNAME}}/openai:latest
-          docker push ${{secrets.DOCKERHUB_USERNAME}}/openai:latest
+          docker tag openai-demo:latest ${{secrets.DOCKERHUB_USERNAME}}/openai-demo:latest
+          docker push ${{secrets.DOCKERHUB_USERNAME}}/openai-demo:latest
