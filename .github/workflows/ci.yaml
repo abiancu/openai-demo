@@ -12,7 +12,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Set Up Docker Environment      
-        uses: docker://20.10.21
+        uses: docker://19.03.14
 
       - name: Build Docker Image
         run: |
