@@ -1,0 +1,22 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main, dev]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+
+      - name: Set Up Docker Environment      
+        uses: docker://20.10.21
+
+      - name: Build Docker Image
+        run: |
+          docker build -t abiancu/openai:latest -f Dockerfile .
+
