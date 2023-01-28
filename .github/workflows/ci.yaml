@@ -20,6 +20,6 @@ jobs:
 
       - name: Push Image to Docker Repo
         run: |
-          echo ${{secrets.DOCKERHUB_PASSWORD}} | docker login --username ${{secrets.DOCKERHUB_USERNAME}} --password stdin
+          echo ${{secrets.DOCKERHUB_PASSWORD}} | docker login --username ${{secrets.DOCKERHUB_USERNAME}} --password-stdin
           docker tag openai-demo:latest ${{secrets.DOCKERHUB_USERNAME}}/openai-demo:latest
           docker push ${{secrets.DOCKERHUB_USERNAME}}/openai-demo:latest
