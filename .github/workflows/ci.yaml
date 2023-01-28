@@ -18,5 +18,10 @@ jobs:
 
       - name: Build Docker Image
         run: |
-          docker build -t abiancu/openai:latest -f Dockerfile .
+          docker build -t openai:latest -f Dockerfile .
 
+      - name: Push Image to Docker Repo
+        run: |
+          echo ${{secrets.DOCKERHUB_PASSWORD}} | docker login --username ${{secrets.DOCKERHUB_USERNAME}} --password stdin
+          docker tag openai:latest ${{secrets.DOCKERHUB_USERNAME}}/openai:latest
+          docker push ${{secrets.DOCKERHUB_USERNAME}}/openai:latest
