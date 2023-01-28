@@ -10,18 +10,16 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v2
-        with:
-          fetch-depth: 1
 
-      - name: Set Up Docker Environment      
-        uses: docker://20.10.21
+      - name: Login in to Docker Hub
+        run: |
+          echo ${{secrets.DOCKERHUB_PASSWORD}} | docker login --username ${{secrets.DOCKERHUB_USERNAME}} --password-stdin
 
       - name: Build Docker Image
         run: |
-          docker build -t openai:latest -f Dockerfile .
+          docker build -t openai-demo:latest -f Dockerfile .
 
       - name: Push Image to Docker Repo
         run: |
-          echo ${{secrets.DOCKERHUB_PASSWORD}} | docker login --username ${{secrets.DOCKERHUB_USERNAME}} --password stdin
-          docker tag openai:latest ${{secrets.DOCKERHUB_USERNAME}}/openai:latest
-          docker push ${{secrets.DOCKERHUB_USERNAME}}/openai:latest
+          docker tag openai-demo:latest ${{secrets.DOCKERHUB_USERNAME}}/openai-demo:latest
+          docker push ${{secrets.DOCKERHUB_USERNAME}}/openai-demo:latest

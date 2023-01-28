@@ -1,12 +1,14 @@
 # syntax=docker/dockerfile:1
 FROM alpine:latest
 
-COPY . .
+WORKDIR /app
+COPY . /app/
 COPY .dockerignore .
 
 
 RUN apk update && apk add --no-cache nodejs npm
 RUN npm install
+RUn npm audit fix --force
 
 EXPOSE 3000
 
