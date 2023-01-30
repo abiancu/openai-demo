@@ -7,7 +7,8 @@ router.get('/', function(req, res) {
   let year = date.getFullYear();
 
   res.render('index', { 
-    title: 'Express',
+    title: 'OpenAI with Express',
+    pagetitle: "OpenAI Demo",
     date: year
     
   });
