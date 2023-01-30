@@ -1,0 +1,19 @@
+extends layout
+
+block content
+
+    main 
+        div.container-md(style='margin-top: 2rem;')
+          .row.justify-content-center
+            .col-md-6
+              form(action="/services/image" method="POST")
+                .row.mb-4
+                  label(for="prompt") Image prompt
+                  input.form-control-lg(type="text" placeholder="Describe image" required="true")
+                .form-outline-mb-4
+                  label(for="size") Chose your image size  
+                  select.select 
+                    option(value="small") small
+                    option(value="medium") medium
+                    option(value="large") large
+                button.btn.btn-primary.text-wrap(type="submit") Generate Image

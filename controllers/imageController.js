@@ -7,11 +7,10 @@ const configuration = new Configuration({
 const openai = new OpenAIApi(configuration);
 
 exports.index = (req, res) => {
-    res.send("Hello from image generator page");
+    res.render('image');
 }
 
-exports.generateImage = async(req, res, next) => {
-
+exports.generateImage = async(req, res, next) => {    
     try {
         const response = await openai.createImage({
             prompt: "A cartoon image of a happy kid driving a formula one race car",
