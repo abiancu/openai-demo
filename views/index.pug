@@ -2,6 +2,45 @@ extends layout
 
 block content
 
-  h1= title
-  p Welcome to #{title} With Docker!
+  main 
+    div.container-md(style='margin-top: 2rem;')
+      div.row.justify-content-center
+        .col 
+          h1= pagetitle
+    div.container-md(style='margin-top: 4rem;')
+      div.row.justify-content-center
+        .col-md-6
+          .text-center
+            h2.display-5="Choose your service"
+    div.container-md(style='margin-top: 2rem;')
+      div.row
+        .col-md-6  
+          .container
+            .row.justify-content-center 
+              .col
+                .card
+                  .bg-image.hover-overlay.ripple.shadow-1-strong.rounded(data-mdb-ripple-color="light")
+                    .card-header
+                      h5.display-6.text-center= "Image Generator"
+                    .card-body
+                      p.lead.text-wrap="Use the power of technology to create images from natural language prompt"
+                      hr.hr.hr-blurry
+                      .text-center 
+                        a.btn.btn-primary.text-wrap(href="/services/image")="Create Image"
+        .col-md-6
+          .container
+            .row.justify-content-center 
+              .col 
+                .card
+                  .bg-image.hover-overlay.ripple.shadow-1-strong.rounded(data-mdb-ripple-color="light")
+                    .card-header
+                      h5.display-6.text-center= "Product Description"
+                    .card-body
+                      p.lead.text-wrap="Create engaging product descriptions in seconds"
+                      hr.hr.hr-blurry
+                      .text-center 
+                        a.btn.btn-primary.text-wrap(href="/services/product")="Product Description"
+
+
+          
 

@@ -8,7 +8,7 @@ const configuration = new Configuration({
 const openai = new OpenAIApi(configuration);
 
 exports.index = (req, res) => {
-    res.send("Hello from product name page");
+    res.render('product');
 }
 
 exports.generateProductDescription = async (req, res, next) => {

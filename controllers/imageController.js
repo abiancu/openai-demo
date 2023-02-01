@@ -7,23 +7,23 @@ const configuration = new Configuration({
 const openai = new OpenAIApi(configuration);
 
 exports.index = (req, res) => {
-    res.send("Hello from image generator page");
+    res.render('image');
 }
 
-exports.generateImage = async(req, res, next) => {
-
+exports.generateImage = async(req, res, next) => {    
+    let prompt = req.body.prompt
+    let size = req.body.size
+    console.log(`prompt: ${prompt}, size: ${size}`)
     try {
         const response = await openai.createImage({
-            prompt: "A cartoon image of a happy kid driving a formula one race car",
+            prompt: prompt,
             n: 1,
-            size: '512x512',
+            size: size === 'small' ? '256x256' : size === 'medium' ? '512x512' : '1024x1024',
             response_format: 'url'    
         })
 
-        res.status(200).json({
-            success: true,
-            body: response.data.data[0].url
-        })
+        res.render('image', {image: response.data.data[0].url})
+       
 
     } catch (error) {
         if (error.response) {
