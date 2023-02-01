@@ -8,19 +8,27 @@ block content
                 .col-md-6
                     .card(style="boder-radius: 1rem;")
                         .card-body.p-5
-                            form(action="/#" method="POST")
+                            form(action="/services/image" method="POST")
                                 <h1 class="mb-5 text-center">Image Generator</h1>
                                 //- Text fields
-                                form(action='/services/image', method='post')
-                                    .form-group
-                                        label(for='prompt') Describe your image:
-                                        .md-form
-                                            input.form-control#prompt(type='text', name='prompt')
-                                    .form-group
-                                        label(for='size') Select Size:
-                                        .md-form
-                                            select.browser-default.custom-select#size
-                                                option(value='small') Small
-                                                option(value='medium') Medium
-                                                option(value='large') Large
-                                button.btn.btn-primary.btn-block(type='submit') Submit
+                                .form-group
+                                    label(for='prompt') Describe your image:
+                                    .md-form
+                                        input.form-control#prompt(type='text', name='prompt')
+                                .form-group
+                                    label(for='size') Select Size:
+                                    .md-form
+                                        select.browser-default.custom-select#size(name='size')
+                                            option(value='small') Small
+                                            option(value='medium') Medium
+                                            option(value='large') Large
+                                    
+                                button.btn.btn-primary.btn-block(type='submit' id="submit") Submit
+
+        section.image 
+          div.container-md(style='margin-top: 2rem;')
+           .row 
+             .col 
+              img#img(src=image, alt="")
+
+    
