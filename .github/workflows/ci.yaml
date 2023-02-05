@@ -23,3 +23,21 @@ jobs:
         run: |
           docker tag openai-demo:latest ${{secrets.DOCKERHUB_USERNAME}}/openai-demo:latest
           docker push ${{secrets.DOCKERHUB_USERNAME}}/openai-demo:latest
+
+      - name: Create key json file
+        uses: jsdaniell/create-json@1.1.2
+        with:
+         name: key.json
+         json: ${{secrets.GCR_KEY}}
+     
+      - name: Authenticate with GCR
+        run: |
+          cat key.json | docker login -u _json_key --password-stdin https://gcr.io
+          gcloud auth activate-service-account --key-file=key.json
+          gcloud auth configure-docker
+       
+
+      - name: Push Docker image to container
+        run: |
+           docker tag openai-demo:latest gcr.io/${{secrets.GOOGLE_PROJECT_ID}}/openai-demo:latest
+           gcloud docker -- push gcr.io/${{secrets.GOOGLE_PROJECT_ID}}/openai-demo:latest
