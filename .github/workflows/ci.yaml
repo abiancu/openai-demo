@@ -27,7 +27,9 @@ jobs:
       - name: Authenticate with GCR
         uses: google-actions/gcloud-auth@v1
         with:
-          service_account_key: ${{secrets.GCP_SERVICE_AUTH_KEY}} 
+          registry: gcr.io
+          username: _json_key
+          password: ${{secrets.GCP_SERVICE_AUTH_KEY}}
 
       - name: Push Docker image to container
         run: |
