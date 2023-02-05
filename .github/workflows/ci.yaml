@@ -26,8 +26,8 @@ jobs:
 
       - name: Authenticate with GCR
         run: |
-          echo ${{secrets.GCR_KEY}} | base64 --decode > key.json
-          cat key.json | docker login -u _json_key --password-stdin  https://gcr.io
+          echo ${{secrets.GCR_KEY}} > key.json
+          cat key.json | docker login -u _json_key --password-stdin https://HOSTNAME
        
 
       - name: Push Docker image to container
