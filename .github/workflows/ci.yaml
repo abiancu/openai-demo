@@ -25,11 +25,9 @@ jobs:
           docker push ${{secrets.DOCKERHUB_USERNAME}}/openai-demo:latest
 
       - name: Authenticate with GCR
-        uses: openai-demo:latest
-        with:
-          registry: gcr.io
-          username: _json_key
-          password: ${{secrets.GCP_SERVICE_AUTH_KEY}}
+        run: |
+          cat ${{secrets.GCP_SERVICE_AUTH_KEY}}| docker login -u _json_key --password-stdin  https://gcr.io
+       
 
       - name: Push Docker image to container
         run: |
