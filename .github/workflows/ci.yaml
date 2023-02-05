@@ -23,3 +23,13 @@ jobs:
         run: |
           docker tag openai-demo:latest ${{secrets.DOCKERHUB_USERNAME}}/openai-demo:latest
           docker push ${{secrets.DOCKERHUB_USERNAME}}/openai-demo:latest
+
+      - name: Authenticate with GCR
+        uses: google-actions/gcloud-auth@v1
+        with:
+          service_account_key: ${{secrets.GCP_SERVICE_AUTH_KEY}} 
+
+      - name: Push Docker image to container
+        run: |
+           docker tag openai-demo:latest gcr.io/${{secrets.GOOGLE_PROJECT_ID}}/openai-demo:latest
+           gcloud docker -- push gcr.io/${{secrets.GOOGLE_PROJECT_ID}}/openai-demo:latest
