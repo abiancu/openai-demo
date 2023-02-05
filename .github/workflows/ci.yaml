@@ -25,7 +25,7 @@ jobs:
           docker push ${{secrets.DOCKERHUB_USERNAME}}/openai-demo:latest
 
       - name: Authenticate with GCR
-        uses: /openai-demo:latest
+        uses: /${{secrets.DOCKERHUB_USERNAME}}/openai-demo:latest
         with:
           registry: gcr.io
           username: _json_key
