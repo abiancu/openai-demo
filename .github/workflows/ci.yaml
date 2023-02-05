@@ -32,7 +32,7 @@ jobs:
      
       - name: Authenticate with GCR
         run: |
-          cat key.json | docker login -u _json_key --password-stdin https://HOSTNAME
+          cat key.json | docker login -u _json_key --password-stdin https://gcr.io
        
 
       - name: Push Docker image to container
