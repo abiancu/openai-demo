@@ -33,6 +33,8 @@ jobs:
       - name: Authenticate with GCR
         run: |
           cat key.json | docker login -u _json_key --password-stdin https://gcr.io
+          gcloud auth activate-service-account --key-file=key.json
+          gcloud auth configure-docker
        
 
       - name: Push Docker image to container
