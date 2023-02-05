@@ -24,9 +24,14 @@ jobs:
           docker tag openai-demo:latest ${{secrets.DOCKERHUB_USERNAME}}/openai-demo:latest
           docker push ${{secrets.DOCKERHUB_USERNAME}}/openai-demo:latest
 
+      - name: Create key json file
+        uses: jsdaniell/create-json@1.1.2
+        with:
+         name: key.json
+         json: ${{secrets.GCR_KEY}}
+     
       - name: Authenticate with GCR
         run: |
-          echo ${{secrets.GCR_KEY}} > key.json
           cat key.json | docker login -u _json_key --password-stdin https://HOSTNAME
        
 
