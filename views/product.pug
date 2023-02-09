@@ -1,3 +1,30 @@
 extends layout
 
 block content
+
+    main 
+        div.container-md(style='margin-top: 2rem;')
+            .row-justify-content-center
+                .col-md-6
+                    .card(style="boder-radius: 1rem;")
+                        .card-body.p5
+                            form(action="/services/product" method="POST")
+                                .card-header
+                                    h5.display-6.text-center= "Descript Your Product"
+                                .form-group    
+                                    .form-outline(style="margin-top: 1erm;")
+                                        input.form-control.form-control-lg#formControlLg(type="text")
+                                        label.form-label(for="formControlLg") Example: write a product description for a blue car
+                                
+                                button.btn.btn-primary.btn-block(type='submit' id="submit") Submit
+
+        div.container-md(style='margin-top: 2rem;')
+            .row.justify-content-center 
+                .col-md-6
+                    .card(style="border-radius: 1erm;")
+                        .card-body
+                            h1.text-center
+                                | Result 
+                            .form-group 
+                                p.text-justify #{textFromServer}
+        
