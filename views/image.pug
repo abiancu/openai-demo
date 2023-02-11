@@ -14,7 +14,7 @@ block content
                                 .form-group
                                     label(for='prompt') Describe your image:
                                     .md-form
-                                        input.form-control#prompt(type='text', name='prompt')
+                                        input.form-control#prompt(type='text' name='prompt')
                                 .form-group
                                     label(for='size') Select Size:
                                     .md-form
@@ -22,13 +22,18 @@ block content
                                             option(value='small') Small
                                             option(value='medium') Medium
                                             option(value='large') Large
-                                    
+
                                 button.btn.btn-primary.btn-block(type='submit' id="submit") Submit
 
-        section.image 
-          div.container-md(style='margin-top: 2rem;')
-           .row 
-             .col 
-              img#img(src=image, alt="")
+        
+        
+        div.container-md(style='margin-top: 2rem;')
+            .row.justify-content-center
+                .col-md-3
+                .col-md-6.text-center
+                    img.img-fluid(src=image, alt="")
+                .col-md-3
+                    
+           
 
-    
+
