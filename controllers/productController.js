@@ -12,11 +12,12 @@ exports.index = (req, res) => {
 }
 
 exports.generateProductDescription = async (req, res, next) => {
-    
+    let prompt = req.body.prompt
+    console.log(`prompt: ${prompt}`)
     try {
         const response = await openai.createCompletion({
             model: 'text-curie-001',
-            prompt: 'Write a creative ad for the following product to run on Facebook aimed at parents:\n\nProduct: Learning Room is a virtual environment to help students from kindergarten to high school excel in school.',
+            prompt: prompt,
             temperature: 0.5,
             max_tokens: 256,
             top_p: 1.0,
@@ -25,10 +26,12 @@ exports.generateProductDescription = async (req, res, next) => {
     
         });
         
-        res.status(200).json({
-            success: true,
-            body: response.data.choices[0].text
-        });
+        // res.status(200).json({
+        //     success: true,
+        //     body: response.data.choices[0].text
+        // });
+        console.log(response)
+        res.render('product', {textFromServer: response.data.choices[0].text})
 
     } catch (error) {
         if (error.response) {
