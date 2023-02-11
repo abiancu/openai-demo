@@ -40,4 +40,4 @@ jobs:
       - name: Push Docker image to container
         run: |
            docker tag openai-demo:latest gcr.io/${{secrets.GOOGLE_PROJECT_ID}}/openai-demo:latest
-           gcloud docker -- push gcr.io/${{secrets.GOOGLE_PROJECT_ID}}/openai-demo:latest
+           docker push gcr.io/${{secrets.GOOGLE_PROJECT_ID}}/openai-demo:latest
