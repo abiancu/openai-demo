@@ -28,11 +28,12 @@ block content
         
         
         div.container-md(style='margin-top: 2rem;')
-            .row.justify-content-center
-                .col-md-3
-                .col-md-6.text-center
-                    img.img-fluid(src=image, alt="")
-                .col-md-3
+            if image 
+                .row.justify-content-center
+                    .col-md-3
+                    .col-md-6.text-center
+                        img.img-fluid(src=image, alt="")
+                    .col-md-3
                     
            
 
